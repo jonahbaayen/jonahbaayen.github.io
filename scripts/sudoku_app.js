@@ -266,6 +266,27 @@ function handleReset() {
         toggleResetDropdown();
     }
 
+    let very_hard = document.getElementById("reset-very-hard");
+    very_hard.onclick = function() {
+        difficulty = "very-hard";
+        executeReset();
+        toggleResetDropdown();
+    }
+
+    let insane = document.getElementById("reset-insane");
+    insane.onclick = function() {
+        difficulty = "insane";
+        executeReset();
+        toggleResetDropdown();
+    }
+
+    let inhuman = document.getElementById("reset-inhuman");
+    inhuman.onclick = function() {
+        difficulty = "inhuman";
+        executeReset();
+        toggleResetDropdown();
+    }
+
     let reset = document.getElementById("reset");
     reset.onclick = function() {
         toggleResetDropdown();
