@@ -204,6 +204,7 @@ function handleBoard() {
                 }
                 cell.innerHTML = "";
                 cell.classList.remove("occupied-cell");
+                cell.classList.remove("error");
                 appendPencilNums();
             }
         }
@@ -787,3 +788,10 @@ function formatTime(seconds) {
       s > 9 ? s : '0' + s
     ].filter(Boolean).join(':');
 }
+
+// close new game menu when clicking elsewhere
+window.addEventListener("click", function(e) {
+    if (!this.document.getElementById("reset").contains(e.target) && document.getElementById("reset-dropdown").classList.contains("show")) {
+        document.getElementById("reset-dropdown").classList.remove("show");
+    }
+});
