@@ -1,0 +1,370 @@
+:root {
+    --darkest: #000000;
+    --darker: #1F1F1F;
+    --darkish: #262626;
+    --dark: #383838;
+    --dark-highlight: #535353;
+    --dark-click: #8b8b8b;
+
+    --lightest: #ffffff;
+    --lighter: #d6d6d6;
+    --light: #aaaaaa;
+
+    --pink: #FF93AD;
+    --pink-highlight: #ffd0db;
+    --pink-disabled: #ff93ac49;
+
+    --yellow: #FFC250;
+    --yellow-highlight: #ffdfa2;
+
+    --red: #FE5F36;
+
+    --green: #40b484;
+
+    --box-size: 60px;
+    --spacing-half: 2px;
+    --spacing-tiny: 4px;
+    --spacing-big: 8px;
+
+    --border-radius: 8px;
+    --border-radius-hover: 4px;
+}
+
+body {
+    background-color: var(--darker);
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#bar {
+    display: flex;
+    flex-direction: row;
+
+    margin: auto;
+    width: 600px;
+    height: 2em;
+
+    margin-top: 4em;
+}
+
+#timer {
+    user-select: none;
+
+    margin: 0;
+    margin-left: 8px;
+
+    color: var(--pink-disabled);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 1.5em;
+}
+
+#timer.active-timer {
+    color: var(--pink);
+    transition: color 0.2s;
+}
+
+#board {
+    margin: 1em auto;
+    margin-top: 0;
+    border-spacing: var(--spacing-tiny);
+    font-size: 1.5em;
+}
+
+#board td {
+    user-select: none;
+
+    background-color: var(--dark);
+    border: var(--spacing-tiny) solid var(--darker);
+
+    height: var(--box-size);
+    min-width: var(--box-size);
+
+    text-align: center;
+    color: var(--lightest);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 2em;
+
+    border-radius: var(--border-radius-hover);
+    transition: border-radius 0.1s, font-size 0.1s;
+    border: 0;
+
+    position: relative;
+}
+
+#board td:hover {
+    background-color: var(--dark-highlight);
+    border-radius: var(--border-radius-hover) !important;
+
+    transition: background-color 0.05s, border-radius 0.1s;
+}
+
+#board td.invalid-move {
+    background-color: var(--darkish);
+}
+
+#board td.invalid-move:hover {
+    background-color: var(--dark);
+}
+
+#board td.problem {
+    background-color: var(--yellow);
+}
+
+#board td.error {
+    background-color: var(--red);
+}
+
+#board td.clickable {
+    cursor: pointer;
+}
+
+#board td.locked {
+    background-color: var(--darkish);
+    color: var(--light);
+}
+
+#board td.winner {
+    background-color: var(--green);
+    transition: background-color 0.5s
+}
+
+#board td.occupied-cell {
+    font-size: 1.5em;
+    transition: font-size 0.1s;
+}
+
+#board td:nth-child(3n) {
+    margin-right: var(--spacing-tiny);
+}
+
+.board-top-right {
+    border-top-right-radius: var(--border-radius) !important;
+}
+
+.board-top-left {
+    border-top-left-radius: var(--border-radius) !important;
+}
+
+.board-bottom-right {
+    border-bottom-right-radius: var(--border-radius) !important;
+}
+
+.board-bottom-left {
+    border-bottom-left-radius: var(--border-radius) !important;
+}
+
+#board hr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: var(--spacing-half);
+    background-color: transparent;
+}
+
+.pencil-container {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+
+.pencil-container p {
+    font-size: 0.3em;
+    color: var(--pink);
+
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    align-self: flex-start;
+}
+
+#palette {
+    margin: 1em auto;
+    font-size: 1.5em;
+    border-spacing: var(--spacing-tiny);
+}
+
+#palette td {
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+
+    background-color: var(--dark);
+    border: var(--spacing-tiny) solid var(--darker);
+
+    width: var(--box-size);
+    height: var(--box-size);
+
+    color: var(--pink);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 1.5em;
+
+    border-radius: var(--border-radius);
+    border: 0;
+
+    transition: background-color 0.1s, border-radius 0.1s;
+}
+
+#palette td:hover {
+    background-color: var(--dark-highlight);
+    border-radius: var(--border-radius-hover);
+    font-size: 1.65em;
+
+    transition: background-color 0.1s, border-radius 0.1s, font-size 0.1s;
+}
+
+#palette td:active {
+    background-color: var(--dark-click);
+}
+
+#palette td.selected-digit {
+    background-color: var(--pink);
+    color: var(--lightest);
+}
+
+#palette td[data-disabled] {
+    color: var(--darker);
+}
+
+#palette td[data-disabled]:hover {
+    background-color: var(--dark);
+    border-radius: var(--border-radius);
+    cursor: not-allowed;
+}
+
+#undo {
+    font-weight: bolder;
+    background-color: var(--pink) !important;
+    transition: background-color 0.1s !important;
+    color: var(--dark) !important;
+}
+
+#undo:hover {
+    background-color: var(--pink-highlight) !important;
+    transition: background-color 0.1s !important;
+}
+
+#undo:active {
+    background-color: var(--lightest) !important;
+}
+
+#tools {
+    display: flex;
+    flex-direction: column;
+
+    background-color: transparent !important;
+}
+
+.tool {
+    cursor: pointer;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: var(--spacing-tiny);
+
+    color: var(--pink);
+    font-family: "Fredoka One", sans-serif;
+    
+    background-color: var(--dark);
+    border: 0;
+    border-radius: var(--border-radius);
+}
+
+.tool:hover {
+    background-color: var(--dark-highlight);
+    border-radius: var(--border-radius-hover);
+
+    transition: background-color 0.1s, border-radius 0.1s;
+}
+
+.tool:active {
+    background-color: var(--dark-click);
+}
+
+.tool.selected {
+    background-color: var(--pink);
+    color: var(--lightest);
+}
+
+.tool[data-disabled] {
+    color: var(--darker);
+    cursor: not-allowed;
+}
+
+.tool[data-disabled]:hover {
+    background-color: var(--dark);
+}
+
+#reset {
+    color: var(--pink);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 1em;
+
+    background-color: transparent;
+    transition: background-color 0.1s;
+
+    padding: 5px;
+
+    border: 0;
+    border-radius: var(--border-radius);
+}
+
+#reset:hover {
+    background-color: var(--dark);
+    transition: background-color 0.1s;
+    cursor: pointer;
+}
+
+#reset:active {
+    background-color: var(--dark-click);
+}
+
+#reset-container {
+    margin-left: auto;
+    margin-right: 3px;
+}
+
+#reset-dropdown {
+    display: none;
+    flex-direction: column;
+    z-index: 10;
+
+    position: absolute;
+
+    height: 70px;
+    width: 90px;
+
+    padding: 5px;
+    border-radius: var(--border-radius);
+
+    background-color: var(--pink);
+}
+
+#reset-dropdown.show {
+    display: flex;
+}
+
+#reset-dropdown a {
+    color: var(--lightest);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 1em;
+    text-decoration: none;
+
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+#reset-dropdown a:hover {
+    background-color: var(--pink-highlight);
+    border-radius: var(--border-radius-hover);
+
+    transition: background-color 0.1s;
+}

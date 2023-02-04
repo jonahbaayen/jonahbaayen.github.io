@@ -1,0 +1,91 @@
+:root {
+    --darkest: #000000;
+    --darker: #1F1F1F;
+    --darkish: #262626;
+    --dark: #383838;
+    --dark-highlight: #535353;
+    --dark-click: #8b8b8b;
+
+    --lightest: #ffffff;
+    --lighter: #d6d6d6;
+    --light: #aaaaaa;
+    --not-light: #7a7a7a;
+}
+
+body {
+    background-color: var(--darker);
+    margin: 0px;
+}
+
+#menu {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item {
+    color: var(--lightest);
+    fill: var(--lightest);
+    font-size: 4vw;
+    font-family: "Fredoka One", sans-serif;
+
+    display: block;
+    text-decoration: none;
+    padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
+
+    transition: color 0.2s ease, fill 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease;
+}
+
+.menu-item p {
+    user-select: none;
+    font-size: 2vw;
+    margin: 0;
+    color: var(--light);
+}
+
+.menu-item svg {
+    height: 3vw;
+    width: 3vw;
+    position: relative;
+}
+
+#menu-items {
+    margin-left: 20vw;
+    position: relative;
+    z-index: 2;
+}
+
+#menu-items:hover > .menu-item {
+    color: var(--not-light);
+    fill: var(--not-light);
+
+    transition: color 0.2s ease, fill 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease;
+}
+
+#menu-items:hover > .menu-item:hover {
+    color: var(--lightest);
+    fill: var(--lightest);
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+
+    transition: color 0.2s ease, fill 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease;
+}
+
+#menu-background-pattern {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.1) 9%, 
+      transparent 9%
+    );
+    background-position: 0% 0%;
+    background-size: 6vmin 6vmin;
+    height: 100vh;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    transition: opacity 800ms ease, 
+      background-size 800ms ease,
+      background-position 800ms ease;
+    width: 100vw;
+    z-index: 1;
+}

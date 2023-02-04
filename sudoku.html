@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="styles/sudoku.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
+    <script src="scripts/sudoku.js"></script>
+    <script src="scripts/sudoku_app.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div id="bar">
+            <p id="timer">0:00</p>
+            <div id="reset-container">
+                <button id="reset">New Puzzle</button>
+                <div id="reset-dropdown">
+                    <a href="#" id="reset-easy">Easy</a>
+                    <a href="#" id="reset-medium">Medium</a>
+                    <a href="#" id="reset-hard">Hard</a>
+                </div>
+            </div>
+        </div>
+        
+        <table id="board"></table>
+    </div>
+
+    <table id="palette">
+        <td id="tools">
+            <button id="pencil" class="tool">Pencil</button>
+            <button id="eraser" class="tool">Eraser</button>
+        </td>
+        <td id="palette1">1</td>
+        <td id="palette2">2</td>
+        <td id="palette3">3</td>
+        <td id="palette4">4</td>
+        <td id="palette5">5</td>
+        <td id="palette6">6</td>
+        <td id="palette7">7</td>
+        <td id="palette8">8</td>
+        <td id="palette9">9</td>
+        <td id="undo">↻</td>
+    </table>
+</body>
+</html>
