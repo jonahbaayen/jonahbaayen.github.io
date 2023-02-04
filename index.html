@@ -6,7 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
-    <script src="scripts/home.js"></script>
+    <script src="scripts/home.js" defer></script>
     <script src="https://rouninmedia.github.io/axe/axe.js"></script>
 </head>
 <body>
@@ -21,27 +21,26 @@
                     <path d="M1648.78,0H399.22C179.65,0,0,179.65,0,399.22V1648.78C0,1868.35,179.65,2048,399.22,2048H1648.78c219.57,0,399.22-179.65,399.22-399.22V399.22C2048,179.65,1868.35,0,1648.78,0ZM1232,200V619H816V200ZM816,819h416v416H816ZM200,399.22c0-52.77,20.84-102.68,58.69-140.53S346.45,200,399.22,200H616V619H200ZM200,819H616v416H200ZM399.22,1848c-52.77,0-102.68-20.84-140.53-58.69S200,1701.55,200,1648.78V1435H616v413ZM816,1848V1435h416v413Zm1032-199.22c0,52.77-20.84,102.68-58.69,140.53S1701.55,1848,1648.78,1848H1432V1435h416Zm0-413.78H1432V819h416Zm0-616H1432V200h216.78c52.77,0,102.68,20.84,140.53,58.69S1848,346.45,1848,399.22Z"/>
                 </svg>
                 Sudoku
-                <div id="menu-background-sudoku" class="background-icon">
-                    <svg id="sudoku-icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
-                        <title>sudoku-icon</title>
-                        <path d="M1648.78,0H399.22C179.65,0,0,179.65,0,399.22V1648.78C0,1868.35,179.65,2048,399.22,2048H1648.78c219.57,0,399.22-179.65,399.22-399.22V399.22C2048,179.65,1868.35,0,1648.78,0ZM1232,200V619H816V200ZM816,819h416v416H816ZM200,399.22c0-52.77,20.84-102.68,58.69-140.53S346.45,200,399.22,200H616V619H200ZM200,819H616v416H200ZM399.22,1848c-52.77,0-102.68-20.84-140.53-58.69S200,1701.55,200,1648.78V1435H616v413ZM816,1848V1435h416v413Zm1032-199.22c0,52.77-20.84,102.68-58.69,140.53S1701.55,1848,1648.78,1848H1432V1435h416Zm0-413.78H1432V819h416Zm0-616H1432V200h216.78c52.77,0,102.68,20.84,140.53,58.69S1848,346.45,1848,399.22Z"/>
-                    </svg>
-                </div>
             </a>
             <a href="https://github.com/nyuppo" id="menu-minecraft" class="menu-item hoverable">
                 <svg id="minecraft-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1773.62 2048">
                     <title>minecraft-icon</title>
                     <path d="M1024,0,137.19,512V1536L1024,2048l886.81-512V512Zm586.75,569.7L1024,908.53,437.2,569.73,1024,230.94ZM1024,1817.06,337.19,1420.53V742.93L1024,1139.47l686.81-396.6v677.66Z" transform="translate(-137.19)"/>
                 </svg>
-                <div id="menu-background-minecraft" class="background-icon">
-                    <svg id="minecraft-icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1773.62 2048">
-                        <title>minecraft-icon</title>
-                        <path d="M1024,0,137.19,512V1536L1024,2048l886.81-512V512Zm586.75,569.7L1024,908.53,437.2,569.73,1024,230.94ZM1024,1817.06,337.19,1420.53V742.93L1024,1139.47l686.81-396.6v677.66Z" transform="translate(-137.19)"/>
-                    </svg>
-                </div>
                 Minecraft Modding
             </a>
-            <a href="#" class="menu-item hoverable">Something else</a>
+        </div>
+        <div id="menu-background-sudoku" class="background-icon">
+            <svg id="sudoku-icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                <title>sudoku-icon</title>
+                <path d="M1648.78,0H399.22C179.65,0,0,179.65,0,399.22V1648.78C0,1868.35,179.65,2048,399.22,2048H1648.78c219.57,0,399.22-179.65,399.22-399.22V399.22C2048,179.65,1868.35,0,1648.78,0ZM1232,200V619H816V200ZM816,819h416v416H816ZM200,399.22c0-52.77,20.84-102.68,58.69-140.53S346.45,200,399.22,200H616V619H200ZM200,819H616v416H200ZM399.22,1848c-52.77,0-102.68-20.84-140.53-58.69S200,1701.55,200,1648.78V1435H616v413ZM816,1848V1435h416v413Zm1032-199.22c0,52.77-20.84,102.68-58.69,140.53S1701.55,1848,1648.78,1848H1432V1435h416Zm0-413.78H1432V819h416Zm0-616H1432V200h216.78c52.77,0,102.68,20.84,140.53,58.69S1848,346.45,1848,399.22Z"/>
+            </svg>
+        </div>
+        <div id="menu-background-minecraft" class="background-icon">
+            <svg id="minecraft-icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1773.62 2048">
+                <title>minecraft-icon</title>
+                <path d="M1024,0,137.19,512V1536L1024,2048l886.81-512V512Zm586.75,569.7L1024,908.53,437.2,569.73,1024,230.94ZM1024,1817.06,337.19,1420.53V742.93L1024,1139.47l686.81-396.6v677.66Z" transform="translate(-137.19)"/>
+            </svg>
         </div>
         <div id="menu-background-pattern"></div>
     </div>

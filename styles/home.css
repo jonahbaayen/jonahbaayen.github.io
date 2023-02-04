@@ -99,35 +99,17 @@ body {
     position: absolute;
     pointer-events: none;
     padding: 0;
-    margin-left: 20vw;
-    margin-top: -12vw;
 
-    z-index: -1;
+    right: 20vw;
+    width: 30vw;
+
+    z-index: 2;
 
     fill: transparent;
     transition: fill 0.2s ease;
 }
 
-.background-icon svg {
-    width: 40vw;
-    height: 40vh;
-}
-
-#menu-sudoku:hover > #menu-background-sudoku {
-    fill: var(--dark) !important;
+.background-icon.hover {
+    fill: var(--dark);
     transition: fill 0.5s ease;
-}
-
-#menu-minecraft:hover > #menu-background-minecraft {
-    fill: var(--dark) !important;
-    transition: fill 0.5s ease;
-}
-
-/* minecraft background icon scaling+position fine-tweaking */
-#menu-background-minecraft svg {
-    width: 47vw;
-    height: 47vh;
-    
-    margin-left: -3.5vw;
-    margin-top: -5vh;
 }
