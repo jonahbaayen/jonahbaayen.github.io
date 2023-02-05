@@ -432,7 +432,7 @@ function handleTools() {
 
         if (pencil) {
             pencil_element.classList.add("selected");
-            enablePalette(true, true);
+            enablePalette(true, false);
             displayClickableCells("pencil");
         } else {
             pencil_element.classList.remove("selected");
