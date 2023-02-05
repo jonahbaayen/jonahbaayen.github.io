@@ -80,6 +80,8 @@
     --switch: var(--lightest);
     --win: var(--green);
     --win-hover: var(--green-highlight);
+    --incomplete: var(--yellow);
+    --incomplete-hover: var(--yellow-highlight);
 }
 
 body {
@@ -144,6 +146,12 @@ body {
 #board td.win:hover {
     transition: background-color 0.05s ease;
     background-color: var(--win-hover);
+}
+#board td.incomplete {
+    background-color: var(--incomplete);
+}
+#board td.incomplete:hover {
+    background-color: var(--incomplete-hover);
 }
 
 /* Cell spacing */

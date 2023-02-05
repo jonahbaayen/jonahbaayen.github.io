@@ -268,6 +268,7 @@ function handleBoard() {
                     activeDigit = null;
                     resetPaletteActive();
                     enablePalette(true, false);
+                    document.getElementById("eraser").removeAttribute("data-disabled");
                 }
 
                 if (has_error) {
@@ -282,7 +283,14 @@ function handleBoard() {
                     enablePalette(false, false);
                     enableTools(false);
                     undo_history = [];
-                } else {
+                } else if (checkComplete()) {
+                    for (let cell of getAllCells()) {
+                        cell.classList.add("incomplete");
+                    }
+                    enablePalette(false, false);
+                    enableTools(false);
+                    resetPaletteActive();
+                } else if (unselect_after_placement) {
                     displayClickableCells("reset");
                 }
             } else if (eraser) { // Eraser
@@ -294,10 +302,33 @@ function handleBoard() {
                 }
 
                 if (board[pos[0] - 1].charAt(pos[1] - 1) == ".") {
+                    var previous_pencil = getPencil(cell);
+
                     pencil_map.delete("cell" + pos[0] + pos[1]);
+
+                    if (undo_pencil) {
+                        undo_history.push({
+                            "type": "pencil",
+                            "previous": previous_pencil,
+                            "new": getPencil(cell),
+                            "row": pos[0],
+                            "column": pos[1]
+                        });
+                    }
+
                     updateBoardDisplay();
                 } else {
+                    let previous = board[pos[0] - 1].charAt(pos[1] - 1);
+
                     updateBoard(pos[0], pos[1], ".");
+
+                    undo_history.push({
+                        "type": "default",
+                        "previous": previous,
+                        "new": ".",
+                        "row": pos[0],
+                        "column": pos[1]
+                    });
                 }
             }
         }
@@ -412,6 +443,10 @@ function undo() {
         updateBoard(lastMove.row, lastMove.column, ".");
         pencil_map.set(cell.id, lastMove.previous);
         updateBoardDisplay();
+    }
+
+    for (let cell of getAllCells()) {
+        cell.classList.remove("incomplete");
     }
 }
 
@@ -611,6 +646,18 @@ function getBlock(row, column) {
     let blockCol = Math.floor((column - 1) / 3) + 1;
 
     return [blockRow, blockCol];
+}
+
+function checkComplete() {
+    for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= 9; j++) {
+            if (board[i - 1].charAt(j - 1) == ".") {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 function checkWin() {
@@ -823,6 +870,8 @@ function toggleDarkMode() {
         r.style.setProperty("--switch", rs.getPropertyValue("--lightest"));
         r.style.setProperty("--win", rs.getPropertyValue("--green"));
         r.style.setProperty("--win-hover", rs.getPropertyValue("--green-highlight"));
+        r.style.setProperty("--incomplete", rs.getPropertyValue("--yellow"));
+        r.style.setProperty("--incomplete-hover", rs.getPropertyValue("--yellow-highlight"));
     } else {
         r.style.setProperty("--background-color", rs.getPropertyValue("--whitest"));
         r.style.setProperty("--menu-color", rs.getPropertyValue("--whiter"));
@@ -846,6 +895,8 @@ function toggleDarkMode() {
         r.style.setProperty("--switch", rs.getPropertyValue("--lightest"));
         r.style.setProperty("--win", rs.getPropertyValue("--green-highlight"));
         r.style.setProperty("--win-hover", rs.getPropertyValue("--green-click"));
+        r.style.setProperty("--incomplete", rs.getPropertyValue("--yellow"));
+        r.style.setProperty("--incomplete-hover", rs.getPropertyValue("--yellow-highlight"));
     }
 }
 
