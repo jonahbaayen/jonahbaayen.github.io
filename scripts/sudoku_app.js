@@ -269,6 +269,12 @@ function handleBoard() {
                     resetPaletteActive();
                     enablePalette(true, false);
                     document.getElementById("eraser").removeAttribute("data-disabled");
+                } else if (show_completed_numbers) {
+                    if (countDigits(activeDigit) >= 9) {
+                        activeDigit = null;
+                        resetPaletteActive();
+                        enablePalette(true, false);
+                    }
                 }
 
                 if (has_error) {
@@ -292,6 +298,8 @@ function handleBoard() {
                     resetPaletteActive();
                 } else if (unselect_after_placement) {
                     displayClickableCells("reset");
+                } else if (!unselect_after_placement) {
+                    displayClickableCells("default");
                 }
             } else if (eraser) { // Eraser
                 // Do not erase if this is one of the starting cells
@@ -574,6 +582,9 @@ function handleToggles() {
 
     document.getElementById("toggle-completed-numbers").addEventListener("change", e => {
         show_completed_numbers = e.target.checked;
+        if (!eraser && !isBoardEmpty()) {
+            enablePalette(true, false);
+        }
     });
 
     document.getElementById("toggle-undo-pencil").addEventListener("change", e => {
@@ -666,6 +677,18 @@ function checkWin() {
             if (board[i - 1].charAt(j - 1) == ".") {
                 return false;
             } else if (!checkValidMove(board[i - 1].charAt(j - 1), i, j)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function isBoardEmpty() {
+    for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= 9; j++) {
+            if (board[i - 1].charAt(j - 1) != ".") {
                 return false;
             }
         }
