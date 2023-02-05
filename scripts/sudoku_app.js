@@ -873,13 +873,13 @@ function toggleDarkMode() {
         r.style.setProperty("--incomplete", rs.getPropertyValue("--yellow"));
         r.style.setProperty("--incomplete-hover", rs.getPropertyValue("--yellow-highlight"));
     } else {
-        r.style.setProperty("--background-color", rs.getPropertyValue("--whitest"));
+        r.style.setProperty("--background-color", rs.getPropertyValue("--whiteish"));
         r.style.setProperty("--menu-color", rs.getPropertyValue("--whiter"));
         r.style.setProperty("--menu-button", rs.getPropertyValue("--white"));
         r.style.setProperty("--menu-button-highlight", rs.getPropertyValue("--whitest"));
         r.style.setProperty("--button-hover", rs.getPropertyValue("--whiter"));
         r.style.setProperty("--button-click", rs.getPropertyValue("--dark-click"));
-        r.style.setProperty("--cell-default", rs.getPropertyValue("--whiteish"));
+        r.style.setProperty("--cell-default", rs.getPropertyValue("--whitest"));
         r.style.setProperty("--cell-locked", rs.getPropertyValue("--dark-click"));
         r.style.setProperty("--cell-hover", rs.getPropertyValue("--whiter"));
         r.style.setProperty("--cell-click", rs.getPropertyValue("--dark-click"));

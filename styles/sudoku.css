@@ -330,7 +330,7 @@ body {
     width: 31vw;
 }
 #reset {
-    color: var(--accent);
+    color: var(--text-accent);
     font-family: "Fredoka One", sans-serif;
     font-size: var(--font-size-small);
     user-select: none;
@@ -615,10 +615,6 @@ input:checked + .switch:before {
         border-radius: var(--border-radius-hover-mobile);
         font-size: var(--font-size-mobile);
         object-fit: contain;
-    }
-
-    #board tr {
-        
     }
 
     #board td:hover {
