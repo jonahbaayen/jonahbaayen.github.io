@@ -31,7 +31,7 @@
     --green-click: #abf8d8;
 
     --box-size: 3.25vw;
-    --box-size-mobile: 4vh;
+    --box-size-mobile: 10vw;
 
     --font-size: 2em;
     --font-size-medium: 1.5em;
@@ -595,6 +595,10 @@ input:checked + .switch:before {
 @media only screen and (max-width: 800px) {
     #board {
         border-spacing: var(--spacing-tiny-mobile);
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        box-sizing: content-box;
     }
 
     #board td {
@@ -602,6 +606,11 @@ input:checked + .switch:before {
         height: var(--box-size-mobile);
         border-radius: var(--border-radius-hover-mobile);
         font-size: var(--font-size-mobile);
+        object-fit: contain;
+    }
+
+    #board tr {
+        
     }
 
     #board td:hover {
