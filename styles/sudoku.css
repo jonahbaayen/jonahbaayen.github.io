@@ -1,8 +1,8 @@
 :root {
     --darkest: #000000;
     --darker: #1F1F1F;
-    --darkish: #262626;
-    --dark: #383838;
+    --dark: #262626;
+    --darkish: #383838;
     --dark-highlight: #535353;
     --dark-click: #8b8b8b;
 
@@ -10,9 +10,16 @@
     --lighter: #d6d6d6;
     --light: #aaaaaa;
 
+    --whitest: #ffffff;
+    --whiter: #f1f1f1;
+    --white: #E7E9EB;
+    --whiteish: #c3c8ce;
+
     --pink: #FF93AD;
     --pink-highlight: #ffd0db;
+    --pink-click: #ffeff2;
     --pink-disabled: #ff93ac49;
+    --pink-dark: #df5d7b;
 
     --yellow: #FFC250;
     --yellow-highlight: #ffdfa2;
@@ -20,351 +27,615 @@
     --red: #FE5F36;
 
     --green: #40b484;
+    --green-highlight: #6fe2b2;
+    --green-click: #abf8d8;
 
-    --box-size: 60px;
-    --spacing-half: 2px;
-    --spacing-tiny: 4px;
+    --box-size: 3.25vw;
+    --box-size-mobile: 4vh;
+
+    --font-size: 2em;
+    --font-size-medium: 1.5em;
+    --font-size-small: 1em;
+    --font-size-hover: 2.25em;
+    --font-size-mobile: 1.5em;
+    --font-size-mobile-medium: 1em;
+    --font-size-mobile-small: 0.5em;
+    --font-size-mobile-hover: 1.65em;
+
+    --font-size-pencil: 0.4em;
+
+    --spacing-tiny-mobile: 0.15em;
+    --spacing-tiny-half: 0.15em;
+    --spacing-tiny: 0.3em;
+    --spacing-small: 4px;
     --spacing-big: 8px;
+
+    --toggle-height: 1em;
+    --toggle-width: 2em;
 
     --border-radius: 8px;
     --border-radius-hover: 4px;
+    --border-radius-hover-mobile: 2px;
+
+    --background-color: var(--darker);
+    --menu-color: var(--dark);
+    --menu-button: var(--darkish);
+    --menu-button-highlight: var(--dark-highlight);
+    --button-hover: var(--darkish);
+    --button-click: var(--dark-click);
+    --cell-default: var(--darkish);
+    --cell-locked: var(--dark);
+    --cell-hover: var(--dark-highlight);
+    --cell-click: var(--dark-click);
+    --text-default: var(--lightest);
+    --text-locked: var(--light);
+    --text-disabled: var(--darker);
+    --text-accent: var(--accent);
+    --text-dropdown: var(--lightest);
+    --accent: var(--pink);
+    --accent-highlight: var(--pink-highlight);
+    --accent-click: var(--pink-click);
+    --accent-disabled: var(--pink-disabled);
+    --switch-background: var(--dark-highlight);
+    --switch: var(--lightest);
+    --win: var(--green);
+    --win-hover: var(--green-highlight);
 }
 
 body {
-    background-color: var(--darker);
+    background-color: var(--background-color);
 }
 
 #container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    margin: 1em auto;
 }
 
-#bar {
-    display: flex;
-    flex-direction: row;
-
-    margin: auto;
-    width: 600px;
-    height: 2em;
-
-    margin-top: 4em;
-}
-
-#timer {
-    user-select: none;
-
-    margin: 0;
-    margin-left: 8px;
-
-    color: var(--pink-disabled);
-    font-family: "Fredoka One", sans-serif;
-    font-size: 1.5em;
-}
-
-#timer.active-timer {
-    color: var(--pink);
-    transition: color 0.2s;
-}
-
+/* Board cells */
 #board {
     margin: 1em auto;
     margin-top: 0;
     border-spacing: var(--spacing-tiny);
-    font-size: 1.5em;
 }
-
 #board td {
     user-select: none;
 
-    background-color: var(--dark);
-    border: var(--spacing-tiny) solid var(--darker);
+    text-align: center;
+    font-family: "Fredoka One", sans-serif;
+    font-size: var(--font-size);
+    color: var(--text-default);
 
+    width: var(--box-size);
     height: var(--box-size);
-    min-width: var(--box-size);
+    padding: 0;
+
+    background-color: var(--cell-default);
+    border-radius: var(--border-radius-hover);
 
     text-align: center;
-    color: var(--lightest);
-    font-family: "Fredoka One", sans-serif;
-    font-size: 2em;
-
-    border-radius: var(--border-radius-hover);
-    transition: border-radius 0.1s, font-size 0.1s;
-    border: 0;
-
-    position: relative;
+    vertical-align: middle;
+    
+    transition: background-color 0.05s ease, border-radius 0.1s ease, font-size 0.1s ease;
 }
-
 #board td:hover {
-    background-color: var(--dark-highlight);
+    background-color: var(--cell-hover);
     border-radius: var(--border-radius-hover) !important;
-
-    transition: background-color 0.05s, border-radius 0.1s;
+    /*font-size: var(--font-size-hover); */
 }
-
-#board td.invalid-move {
-    background-color: var(--darkish);
+#board td.locked {
+    background-color: var(--cell-locked);
+    color: var(--text-locked);
 }
-
-#board td.invalid-move:hover {
-    background-color: var(--dark);
-}
-
-#board td.problem {
-    background-color: var(--yellow);
-}
-
-#board td.error {
-    background-color: var(--red);
-}
-
 #board td.clickable {
     cursor: pointer;
 }
-
-#board td.locked {
-    background-color: var(--darkish);
-    color: var(--light);
+#board td.error {
+    background-color: var(--red);
+}
+#board td.invalid-move {
+    background-color: var(--cell-locked);
+}
+#board td.invalid-move:hover {
+    background-color: var(--cell-default);
+}
+#board td.win {
+    transition: background-color 0.5s ease;
+    background-color: var(--win);
+}
+#board td.win:hover {
+    transition: background-color 0.05s ease;
+    background-color: var(--win-hover);
 }
 
-#board td.winner {
-    background-color: var(--green);
-    transition: background-color 0.5s
-}
-
-#board td.occupied-cell {
-    font-size: 1.5em;
-    transition: font-size 0.1s;
-}
-
+/* Cell spacing */
 #board td:nth-child(3n) {
     margin-right: var(--spacing-tiny);
 }
-
 .board-top-right {
     border-top-right-radius: var(--border-radius) !important;
 }
-
 .board-top-left {
     border-top-left-radius: var(--border-radius) !important;
 }
-
 .board-bottom-right {
     border-bottom-right-radius: var(--border-radius) !important;
 }
-
 .board-bottom-left {
     border-bottom-left-radius: var(--border-radius) !important;
 }
-
 #board hr {
     margin: 0;
     padding: 0;
     border: 0;
-    height: var(--spacing-half);
+    height: var(--spacing-tiny);
     background-color: transparent;
 }
+#board vl {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    padding-right: var(--spacing-tiny-half);
+}
 
+/* Pencil Numbers */
 .pencil-container {
-    display: flex;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    flex-wrap: wrap;
-    justify-content: end;
+    position: relative;
+    margin: 0 !important;
+    padding: var(--spacing-small);
+    bottom: 0;
+
+    table-layout: fixed;
+    
+    height: 100%;
+    width: 100%;
+}
+.pencil-container tr {
+    width: 100%;
+    height: var(--font-size-pencil);
+}
+.pencil-num {
+    text-align: center !important;
+    font-size: var(--font-size-pencil) !important;
+    color: var(--accent) !important;
+
+    background-color: transparent !important;
+    pointer-events: none !important;
+
+    padding: 0 !important;
+    height: var(--font-size-pencil) !important;
+    width: var(--font-size-pencil) !important;
+    max-height: fit-content !important;
+    max-width: fit-content !important;
 }
 
-.pencil-container p {
-    font-size: 0.3em;
-    color: var(--pink);
-
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 0;
-    margin-bottom: 0;
-
-    align-self: flex-start;
-}
-
+/* Palette */
 #palette {
     margin: 1em auto;
-    font-size: 1.5em;
+    margin-top: 4vh;
     border-spacing: var(--spacing-tiny);
 }
-
 #palette td {
-    cursor: pointer;
-    text-align: center;
     user-select: none;
-
-    background-color: var(--dark);
-    border: var(--spacing-tiny) solid var(--darker);
+    cursor: pointer;
 
     width: var(--box-size);
     height: var(--box-size);
 
-    color: var(--pink);
+    background-color: var(--cell-default);
+    border-radius: var(--border-radius);
+
+    text-align: center;
     font-family: "Fredoka One", sans-serif;
-    font-size: 1.5em;
+    font-size: var(--font-size);
+    color: var(--text-accent);
 
-    border-radius: var(--border-radius);
-    border: 0;
-
-    transition: background-color 0.1s, border-radius 0.1s;
+    transition: background-color 0.1s ease, border-radius 0.1s ease, font-size 0.1s ease, color 0.1s ease;
 }
-
 #palette td:hover {
-    background-color: var(--dark-highlight);
+    background-color: var(--cell-hover);
     border-radius: var(--border-radius-hover);
-    font-size: 1.65em;
-
-    transition: background-color 0.1s, border-radius 0.1s, font-size 0.1s;
+    font-size: var(--font-size-hover);
 }
-
 #palette td:active {
-    background-color: var(--dark-click);
+    background-color: var(--cell-click);
 }
-
 #palette td.selected-digit {
-    background-color: var(--pink);
-    color: var(--lightest);
+    background-color: var(--accent);
+    color: var(--text-default);
 }
-
 #palette td[data-disabled] {
-    color: var(--darker);
+    color: var(--text-disabled);
 }
-
 #palette td[data-disabled]:hover {
-    background-color: var(--dark);
-    border-radius: var(--border-radius);
     cursor: not-allowed;
+    background-color: var(--cell-default);
+    font-size: var(--font-size);
 }
-
 #undo {
     font-weight: bolder;
-    background-color: var(--pink) !important;
-    transition: background-color 0.1s !important;
-    color: var(--dark) !important;
+    background-color: var(--accent) !important;
+    fill: var(--text-default) !important;
 }
-
+#undo svg {
+    height: 1em;
+    display: block;
+    margin: auto;
+}
 #undo:hover {
-    background-color: var(--pink-highlight) !important;
-    transition: background-color 0.1s !important;
+    background-color: var(--accent-highlight) !important;
 }
-
 #undo:active {
-    background-color: var(--lightest) !important;
+    background-color: var(--accent-click) !important;
 }
-
 #tools {
+    cursor: default !important;
+
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-tiny-half);
+    align-items: stretch;
 
     background-color: transparent !important;
 }
-
 .tool {
     cursor: pointer;
 
-    padding-top: 6px;
-    padding-bottom: 6px;
-    margin-bottom: var(--spacing-tiny);
+    flex: 1;
 
-    color: var(--pink);
+    color: var(--text-accent);
     font-family: "Fredoka One", sans-serif;
-    
-    background-color: var(--dark);
+    text-align: center;
+
+    background-color: var(--cell-default);
     border: 0;
     border-radius: var(--border-radius);
-}
 
+    padding: 0;
+
+    transition: background-color 0.1s ease, border-radius 0.1s ease;
+}
 .tool:hover {
-    background-color: var(--dark-highlight);
+    background-color: var(--cell-hover);
     border-radius: var(--border-radius-hover);
-
-    transition: background-color 0.1s, border-radius 0.1s;
 }
-
 .tool:active {
-    background-color: var(--dark-click);
+    background-color: var(--cell-click);
 }
-
 .tool.selected {
-    background-color: var(--pink);
-    color: var(--lightest);
+    background-color: var(--accent);
+    color: var(--text-default);
 }
-
 .tool[data-disabled] {
-    color: var(--darker);
-    cursor: not-allowed;
+    color: var(--text-disabled);
 }
-
 .tool[data-disabled]:hover {
-    background-color: var(--dark);
+    cursor: not-allowed;
+    background-color: var(--cell-default);
 }
 
+/* Game bar */
+#bar {
+    display: flex;
+    flex-direction: row;
+    
+    padding-top: 5vh;
+    margin: auto;
+    width: 31vw;
+}
 #reset {
-    color: var(--pink);
+    color: var(--accent);
     font-family: "Fredoka One", sans-serif;
-    font-size: 1em;
+    font-size: var(--font-size-small);
+    user-select: none;
 
     background-color: transparent;
-    transition: background-color 0.1s;
-
-    padding: 5px;
+    transition: background-color 0.1s ease;
 
     border: 0;
     border-radius: var(--border-radius);
-}
 
+    padding: var(--spacing-small);
+    position: relative;
+    margin-top: var(--spacing-tiny);
+}
 #reset:hover {
-    background-color: var(--dark);
-    transition: background-color 0.1s;
+    background-color: var(--button-hover);
     cursor: pointer;
 }
-
 #reset:active {
-    background-color: var(--dark-click);
+    background-color: var(--button-click);
 }
-
 #reset-container {
     margin-left: auto;
-    margin-right: 3px;
 }
-
 #reset-dropdown {
-    display: none;
+    display: flex;
+    animation-name: reset-hide;
+    animation-duration: 0.1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    
     flex-direction: column;
     z-index: 10;
 
     position: absolute;
 
-    height: 145px;
-    width: 90px;
-
-    padding: 5px;
+    height: 9em;
+    width: 5.75em;
+    padding: var(--spacing-tiny-half);
     border-radius: var(--border-radius);
 
-    background-color: var(--pink);
+    background-color: var(--accent);
 }
-
 #reset-dropdown.show {
-    display: flex;
+    animation-name: reset-expand;
+    animation-duration: 0.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
 }
-
 #reset-dropdown a {
-    color: var(--lightest);
+    color: var(--text-dropdown);
     font-family: "Fredoka One", sans-serif;
-    font-size: 1em;
+    font-size: var(--font-size-small);
     text-decoration: none;
+    opacity: 0%;
 
-    margin-bottom: 5px;
-    padding-left: 5px;
-}
-
-#reset-dropdown a:hover {
-    background-color: var(--pink-highlight);
+    margin-bottom: var(--spacing-small);
+    padding-left: var(--spacing-small);
     border-radius: var(--border-radius-hover);
 
-    transition: background-color 0.1s;
+    animation-name: reset-text-hide;
+    animation-duration: 0.1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+
+    user-select: none;
+    pointer-events: none;
+
+    transition: background-color 0.2s ease;
+}
+#reset-dropdown.show a {
+    opacity: 100%;
+
+    animation-name: reset-text-expand;
+    animation-duration: 0.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+
+    pointer-events: all;
+}
+#reset-dropdown a:hover {
+    background-color: var(--accent-highlight);
+}
+@keyframes reset-expand {
+    from { height: 0; display: flex;}
+    99% { height: 9em; display: flex; }
+    to {}
+}
+@keyframes reset-hide {
+    0% { height: 9em; visibility: visible; }
+    99% { height: 0; visibility: hidden; }
+    100% { visibility: hidden; }
+}
+@keyframes reset-text-expand {
+    from { opacity: 0%; }
+    99% { opacity: 100%; }
+    to {}
+}
+@keyframes reset-text-hide {
+    from { opacity: 100%; }
+    99% { opacity: 0%; }
+    to {}
+}
+#timer {
+    user-select: none;
+
+    margin: 0;
+    padding: var(--spacing-small);
+
+    color: var(--accent-disabled);
+    font-family: "Fredoka One", sans-serif;
+    font-size: var(--font-size-medium);
+}
+
+/* Toggles Menu */
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 20vw;
+    padding: var(--spacing-big);
+    z-index: 20;
+    user-select: none;
+
+    background-color: var(--menu-color);
+
+    font-family: "Fredoka One", sans-serif;
+    color: var(--text-locked);
+    font-size: var(--font-size-small);
+    white-space: nowrap;
+
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+#sidebar.closed {
+    width: 1vw;
+    background-color: transparent;
+}
+
+#sidebar.closed > div > header {
+    opacity: 0%;
+}
+
+#sidebar.closed > div > .toggles {
+    opacity: 0%;
+}
+
+#sidebar header {
+    margin-top: 2vh;
+    padding-left: 0.6em;
+    opacity: 100%;
+
+    font-size: var(--font-size-medium);
+    color: var(--text-default);
+    transition: opacity 0.5s ease;
+}
+
+#sidebar hr {
+    padding: var(--spacing-big);
+    border: 0;
+    background-color: transparent;
+}
+
+#settings-icon {
+    width: 2em;
+    height: 2em;
+    background-color: var(--menu-button);
+    fill: var(--accent);
+
+    position: relative;
+    left: -2em;
+    padding: var(--spacing-big);
+
+    border: 0;
+    border-radius: var(--border-radius);
+
+    transition: background-color 0.2s ease, border-radius 0.2s ease;
+}
+
+#settings-icon:hover {
+    cursor: pointer;
+
+    background-color: var(--menu-button-highlight);
+    border-radius: var(--border-radius-hover);
+}
+
+.toggles-container {
+    height: 100%;
+}
+
+.toggles {
+    height: 100%;
+    list-style: none;
+    padding-left: 1em;
+    opacity: 100%;
+ 
+    transition: opacity 0.5s ease;
+}
+
+.toggle {
+    padding-top: var(--spacing-big);
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    padding: var(--spacing-small);
+
+    margin-left: auto;
+    margin-right: 1em;
+    margin-top: 0;
+
+    transition: margin-right 0.5s ease;
+}
+
+#sidebar.closed > div > ul > li > label {
+    margin-right: -5em;
+    transition: margin-right 0.2s ease;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switch-background);
+    transition: background-color 0.2s;
+
+    border: 0;
+    border-radius: var(--toggle-height);
+}
+
+.switch:before {
+    position: absolute;
+    content: "";
+    height: var(--toggle-height);
+    width: var(--toggle-height);
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--switch);;
+    transition: 0.2s;
+
+    border: 0;
+    border-radius: 50%;
+}
+
+input:checked + .switch {
+    background-color: var(--accent);
+}
+
+input:checked + .switch:before {
+    transform: translateX(var(--toggle-height));
+}
+
+/* Mobile scaling */
+@media only screen and (max-width: 800px) {
+    #board {
+        border-spacing: var(--spacing-tiny-mobile);
+    }
+
+    #board td {
+        width: var(--box-size-mobile);
+        height: var(--box-size-mobile);
+        border-radius: var(--border-radius-hover-mobile);
+        font-size: var(--font-size-mobile);
+    }
+
+    #board td:hover {
+        border-radius: var(--border-radius-hover-mobile) !important;
+    }
+
+    #palette td {
+        width: var(--box-size-mobile);
+        height: var(--box-size-mobile);
+        font-size: var(--font-size-mobile);
+    }
+
+    #palette td:hover {
+        font-size: var(--font-size-mobile-hover);
+    }
+
+    #bar {
+        width: auto;
+    }
+
+    .tool {
+        font-size: 1vh;
+        border-radius: var(--border-radius-hover);
+    }
+
+    .tool:hover {
+        border-radius: var(--border-radius-hover-mobile);
+    }
+
+    #sidebar {
+        width: 80vw;
+    }
+
+    #bar {
+        padding-top: 20vh;
+    }
 }
