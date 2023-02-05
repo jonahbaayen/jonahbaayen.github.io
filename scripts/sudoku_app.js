@@ -326,11 +326,13 @@ function handlePalette() {
                     activeDigit = null;
                     resetPaletteActive();
                     displayClickableCells("reset");
+                    enableTools(true);
 
                     return;
                 }
 
                 resetPaletteActive();
+                document.getElementById("eraser").setAttribute("data-disabled", "true");
 
                 activeDigit = digit.innerHTML;
                 digit.classList.add("selected-digit");
