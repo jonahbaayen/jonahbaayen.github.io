@@ -856,6 +856,7 @@ function toggleDarkMode() {
         r.style.setProperty("--button-click", rs.getPropertyValue("--dark-click"));
         r.style.setProperty("--cell-default", rs.getPropertyValue("--darkish"));
         r.style.setProperty("--cell-locked", rs.getPropertyValue("--dark"));
+        r.style.setProperty("--cell-locked-hover", rs.getPropertyValue("--darkish"));
         r.style.setProperty("--cell-hover", rs.getPropertyValue("--dark-highlight"));
         r.style.setProperty("--cell-click", rs.getPropertyValue("--dark-click"));
         r.style.setProperty("--text-default", rs.getPropertyValue("--lightest"));
@@ -881,6 +882,7 @@ function toggleDarkMode() {
         r.style.setProperty("--button-click", rs.getPropertyValue("--dark-click"));
         r.style.setProperty("--cell-default", rs.getPropertyValue("--whitest"));
         r.style.setProperty("--cell-locked", rs.getPropertyValue("--dark-click"));
+        r.style.setProperty("--cell-locked-hover", rs.getPropertyValue("--light"));
         r.style.setProperty("--cell-hover", rs.getPropertyValue("--whiter"));
         r.style.setProperty("--cell-click", rs.getPropertyValue("--dark-click"));
         r.style.setProperty("--text-default", rs.getPropertyValue("--darkest"));

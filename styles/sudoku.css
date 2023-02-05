@@ -65,6 +65,7 @@
     --button-click: var(--dark-click);
     --cell-default: var(--darkish);
     --cell-locked: var(--dark);
+    --cell-locked-hover: var(--darkish);
     --cell-hover: var(--dark-highlight);
     --cell-click: var(--dark-click);
     --text-default: var(--lightest);
@@ -137,7 +138,7 @@ body {
     background-color: var(--cell-locked);
 }
 #board td.invalid-move:hover {
-    background-color: var(--cell-default);
+    background-color: var(--cell-locked-hover);
 }
 #board td.win {
     transition: background-color 0.5s ease;
