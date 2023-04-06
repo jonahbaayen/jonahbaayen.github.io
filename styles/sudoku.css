@@ -601,7 +601,7 @@ input:checked + .switch:before {
 }
 
 /* Mobile scaling */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) { /* and (orientation: portrait) */
     #board {
         border-spacing: var(--spacing-tiny-mobile);
         margin-left: 0;
